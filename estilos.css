@@ -1,0 +1,51 @@
+html 
+{
+    position: relative;
+    height: 100%;
+}
+body 
+{
+    height: 100%;
+    width:100%;
+    background-color: #31373D;
+}
+#navbar
+{
+    width: 100%;
+}
+#navLeft
+{
+    width: 50%;
+}
+#navRight
+{
+    width: 50%;
+    margin-left:10px;
+}
+div.formulario
+{
+    width: 95%;
+    height: auto;
+    background-color: gray;
+    position: relative;
+    margin: 0px;
+    padding: 25px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 1%);
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 5px;
+}
+table.publis
+{
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.elementoFormulario
+{
+    width:90%;
+    left:50%;
+}
