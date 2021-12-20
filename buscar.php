@@ -49,11 +49,14 @@
                 transform: translate(-50%, -50%) 
             }
         </style>
+        <br>
+        <br>
+         <h1><Center>Mostrando resultado de "<?=$termino?>"</h1>
     </head>
     <body>
         <section>
         <?php if(isset($publicaciones)): ?>
-            <h3>Mostrando resultado de '<?=$termino?>'</h3>
+           
             <ul class="list-group">
                 <?php foreach($publicaciones as $value): ?>
                 <il>
