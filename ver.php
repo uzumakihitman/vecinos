@@ -50,15 +50,21 @@
             $query->bind_param("ssss",$publicacion['vecino_id'],$publicacion['id'],$nuevo_comentario_contenido);
             $query->execute();
             $resultado=$query->get_result();*/
+            if (strlen($nuevo_comentario_contenido)!== 0) {
+                # code...
+            
                 $sql = "INSERT INTO comentarios (vecino_id,publ_id,contenido,usuario) VALUES ('".$publicacion['vecino_id']."','".$publicacion['id']."','".$nuevo_comentario_contenido."','".$nombre_usuario."');";
                 $resultado = $conexion->query($sql);
                 if ($resultado) {
                     header("Location: ver.php?id=".$id);
                 }
             }else{
-                $msjError = "Este usuario no esta registrado!";
+                $msjError = "El comentraio de puede ser vacio";
             }
+        }else{
+            $msjError = "Este usuario no esta registrado!";
         }
+    }
 
     
     
@@ -87,7 +93,7 @@
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                margin-right: -50%;
+                
                 transform: translate(-50%, -50%) 
             }
         </style>
@@ -130,7 +136,8 @@
                     <?php endif;?>
                 <h5>DEJA UN COMMENTARIO</h5>
                 <form action="<?php echo 'ver.php?id='.$id ?>" method="POST">
-                    <textarea class="d-block w-100" name="nuevo_comentario_contenido"></textarea>
+                    <textarea class="d-block w-100" id="nuevo_comentario_contenido" name="nuevo_comentario_contenido" maxlength="300"></textarea>
+                    <span>(<span id="count">0</span>/300)</span>
                     <input type="text" name="nombre_usuario" placeholder="Nombre">
                     <?php if (isset($msjError)) {
                         echo $msjError;
@@ -139,7 +146,6 @@
                 </form>
             </div>
         </section>
-        
     </body>
     <script type="text/javascript">
         function commentBox(){
@@ -168,6 +174,13 @@
             document.getElementById('comment').value="";
         }
      
+    }
+    var nuevoComentarioContenido = document.getElementById('nuevo_comentario_contenido');
+    var count = document.getElementById('count');
+    count.innerHTML = 0;
+    nuevoComentarioContenido.addEventListener('keyup',typingComment);
+    function typingComment(){
+        count.innerHTML = nuevoComentarioContenido.value.length;
     }
     </script>
 </html>
